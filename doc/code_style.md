@@ -211,5 +211,5 @@ All methods should generally fit on 2 standard ISO terminal screens (`80x24`),
 meaning the last character on each line should have an index no greater than
 79.
 
-If a method is so long that it needs to be more than 48 lines long, you should
-rethink how to write the method using helper methods.
+If a method is so long that it needs to be more than 48 lines long (excluding
+comments), you should rethink how to write the method using helper methods.
