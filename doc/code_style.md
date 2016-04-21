@@ -47,6 +47,63 @@ Bad:
 This helps keep the scope visible of each block, without sacrificing vertical
 space.
 
+If squirly braces can be avoided, they should be, so as long as it is still
+clear the scope of what the code is doing. If the statement can be put on
+the same line cleanly, it should be.
+
+Good:
+
+    if (i == 3) i++;
+    for (int j = 0; j < 10; j++)
+        fireMissle(j, i);
+
+Bad:
+
+    if (i == 3) {
+        i++;            <~~~ Only a single statement, no braces!
+    }
+    for (int j = 0; j < 10; j++) {
+        fireMissle(j, i);           <~~~ Same here!
+    }
+
+
+## Keywords & Method calling
+
+Keywords are always followed by a single space before anything required in
+parentheses. Methods being called should never have a space following.
+
+Good:
+
+    for (int i = 0; i < 10; i++) {
+        callMethod(i);
+        fireMissle(i);
+    }
+
+Bad:
+
+    for(int i = 0; i < 10; i++) {
+       ^~~~~~ Missing required space
+        callMethod (i);
+                  ^~~~~~ Erroneous space
+        fireMissile(i);
+    }
+
+## Variable and method names
+
+Generally, methods should be simple enough they will only need a few member
+variables. As such, you should only name variables _short enough, but it is
+clear what they do_. So a variable name of `currentIndex` inside the scope of a
+small for loop is bad, as `i` says just as much about the variable.
+
+Methods should be named _short enough, but it is clear what they do_. For
+example, a method name of `doMissleFire` is dumb, as obviously methods _do
+something_, so instead, name it `missleFire`.
+
+When accessing member variables of an object, you should always use `this.` to
+show that you are accessing the object. If a member variable of an object
+can be accessed through a getter or setter, then you should use that, as
+the getters and setters can then be used for things like bounds checking.
+
 ## Whitespace
 
 Spaces and newlines are the only whitespace allowed. The indentation width
@@ -133,6 +190,17 @@ Bad:
        comment */
     ^          ^~~~ Goes on next line
     \~~~ Needs a star
+
+Comments should always be on their own line.
+
+Good:
+
+    /* Kills the enemy */
+    fireMissle(j, i);
+
+Bad:
+
+    fireMissle(j, i);       // Kills the enemy
 
 ## Display size
 
