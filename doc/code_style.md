@@ -88,7 +88,7 @@ Bad:
         fireMissile(i);
     }
 
-## Variable and method names
+## Variables and methods
 
 Generally, methods should be simple enough they will only need a few member
 variables. As such, you should only name variables _short enough, but it is
@@ -103,6 +103,9 @@ When accessing member variables of an object, you should always use `this.` to
 show that you are accessing the object. If a member variable of an object
 can be accessed through a getter or setter, then you should use that, as
 the getters and setters can then be used for things like bounds checking.
+
+Methods on an object which take no parameters and return nothing should be
+avoided.
 
 ## Whitespace
 
