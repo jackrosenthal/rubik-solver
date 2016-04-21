@@ -9,6 +9,7 @@ studied problem in Math & CS. For the CSCI-306 final project, team SIGSEGV
 will be developing a 3D-solver application using the LWJGL graphics library.
 
 Our project has three main challenges:
+
 1. Designing a data structure to represent the cube in memory, and methods
    to operate on this structure: rotation and face selection.
 2. Creating a 3D graphical display for the cube
