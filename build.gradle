@@ -1,0 +1,33 @@
+apply plugin: 'java'
+
+project.ext.lwjglVersion = "3.0.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.18'
+
+    testCompile 'junit:junit:4.12'
+
+    compile "org.lwjgl:lwjgl:${lwjglVersion}"
+    compile "org.lwjgl:lwjgl-platform:${lwjglVersion}:natives-linux"
+    compile "org.lwjgl:lwjgl-platform:${lwjglVersion}:natives-windows"
+    compile "org.lwjgl:lwjgl-platform:${lwjglVersion}:natives-osx"
+}
+
+jar {
+  manifest {
+    attributes(
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'main.Main'
+    )
+  }
+}
+
+task run(type:JavaExec) {
+    main = 'Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
