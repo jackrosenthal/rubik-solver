@@ -6,13 +6,16 @@ The opening squirly braces should be on the line they specify the scope for.
 There should always be a space after anything before the opening squirly brace.
 
 Good:
+
     for (int i = 0; i < 10; i++) {
 
 Bad:
+
     for (int i = 0; i < 10; i++){
                                ^~~~ Missing a required space
 
 Bad:
+
     for (int i = 0; i < 10; i++)
     {
     ^~~~ Needs to go on line above
@@ -20,6 +23,7 @@ Bad:
 Closing braces should be on a line of their own and properly indented:
 
 Good:
+
     if (i == 3) {
         i += 4;
         j--;
@@ -30,6 +34,7 @@ Good:
     }
 
 Bad:
+
     if (i == 3) {
         i += 4;
         j--;
@@ -51,6 +56,7 @@ No erroneous whitespace should be used, such as at the end of a line or on
 blank lines.
 
 Good:
+
     if (i == 3) {
     ␣␣␣␣i += 4;
     ␣␣␣␣inDataShifter("Input string",
@@ -60,6 +66,7 @@ Good:
     }
 
 Bad:
+
     if (i == 3) {
     ⇥   i += 4;
     ^~~~ Hard tabs should not be used
@@ -76,12 +83,14 @@ Blank lines should be added to the file between methods, and otherwise to
 indicate a separate part of the code.
 
 Good:
+
     ...code...
 
     /* This does something completely different */
     ...code...
 
 Bad:
+
     ...code...
 
     ...more of the same stuff...
@@ -98,6 +107,7 @@ associated text.
 Commented out code should be removed before doing a git commit.
 
 Good:
+
     ...code...
 
     // This code tests the functionality of ...
@@ -111,6 +121,7 @@ Good:
      */
 
 Bad:
+
     //Hello
       ^~~~ Missing space before words
     // doMethod();
