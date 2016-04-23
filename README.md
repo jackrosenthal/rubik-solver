@@ -1,6 +1,8 @@
 # Rubik Solver
 
-PLACE ALL SOURCE FILES IN src/main/java!!!!!
+PLACE ALL SOURCE FILES IN `src/main/java`!!!!!
 
-To build, type "gradle build"
-To run, type "gradle run"
+Tests go in `src/tests/java` and will be run automatically during build.
+
+* To build, type `gradle build`
+* To run, type `gradle run`
