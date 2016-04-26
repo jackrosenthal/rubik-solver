@@ -33,4 +33,11 @@ public class Position {
                this.y == other.y &&
                this.z == other.z;
     }
+
+    @Override
+    public int hashCode() {
+        return (this.x + 1) |
+               ((this.y + 1) << 2) |
+               ((this.z + 1) << 2);
+    }
 }
