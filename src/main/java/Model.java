@@ -1,4 +1,16 @@
 
+import java.util.List;
+
+import java.nio.IntBuffer;
+import org.lwjgl.BufferUtils;
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL;
+
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Model {
     /**
@@ -12,7 +24,7 @@ public class Model {
     public List<Cube> steps;
 
     public long window; // handler for window
-    public Intbuffer width, height; // width / height of window
+    public IntBuffer width, height; // width / height of window
 
     // The following are callbacks for GLFW functions. These are required
     // for informative errors and gather user keyboard input
@@ -27,7 +39,7 @@ public class Model {
                 glfwSetWindowShouldClose(window, GLFW_TRUE);
             }
         }
-    }
+    };
 
     public Model(List<Cube> steps) {
         this.steps = steps;
@@ -45,7 +57,7 @@ public class Model {
             throw new RuntimeException("Failed to create the GLFW window");
         }
 
-        GLFWVidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+        GLFWVidMode vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         // center the window on the display
         glfwSetWindowPos(window,
                 (vidMode.width() - 640) / 2,
@@ -75,7 +87,7 @@ public class Model {
             width.rewind();
             height.rewind();
 
-            glViewPort(0, 0, width.get(). height.get());
+            glViewport(0, 0, width.get(), height.get());
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             // The following places the camera in the environment
@@ -87,8 +99,6 @@ public class Model {
             float time = (float) glfwGetTime();
             glRotatef(time * 50f, 0f, 1f, 0f);
             glRotatef(45f, 1f, 0f, 0f);
-
-            for (int i = -1; i < 
         }
     }
 
