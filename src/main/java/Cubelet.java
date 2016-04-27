@@ -14,10 +14,10 @@ public class Cubelet {
     public Color color2;
     public Color color3;
 
-    public Color orientation1;
-    public Color orientation2;
+    public Position orientation1;
+    public Position orientation2;
 
-    public Cubelet(Color c1, Color c2, Color c3, Color orientation1, Color orientation2) {
+    public Cubelet(Color c1, Color c2, Color c3, Position orientation1, Position orientation2) {
         this.color1 = c1;
         this.color2 = c2;
         this.color3 = c3;
