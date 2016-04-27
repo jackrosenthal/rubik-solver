@@ -93,18 +93,18 @@ public class Cube {
     {
         if (dir == "cc")
         {
-            rotate(position(0,0,1));
+            rotate(planeRot);
         }
         else if (dir == "c")
         {
-            rotate(position(0,0,1));
-            rotate(position(0,0,1));
-            rotate(position(0,0,1));
+            rotate(planeRot);
+            rotate(planeRot);
+            rotate(planeRot);
         }
         else
         {
-            rotate(position(0,0,1));
-            rotate(position(0,0,1));
+            rotate(planeRot);
+            rotate(planeRot);
         }
     }
 
