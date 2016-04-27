@@ -57,8 +57,8 @@ public class Cube {
         cubes.put(position(-1,0,-1), new Cubelet(Color.BLUE,Color.ORANGE,null,Color.BLUE, null)); 
         cubes.put(position(0,-1,1), new Cubelet(Color.RED,Color.YELLOW,null,Color.RED, null));
         cubes.put(position(0,-1,-1), new Cubelet(Color.ORANGE,Color.YELLOW,null,Color.ORANGE, null));
-        
-        /* TODO: Corner pieces */
+
+        /* Corner pieces */
         cubes.put(position(-1,1,1), new Cubelet(Color.WHITE,Color.BLUE, Color.RED,Color.WHITE, Color.BLUE));
         cubes.put(position(1,1,1), new Cubelet(Color.WHITE,Color.GREEN, Color.RED,Color.WHITE, Color.GREEN));
         cubes.put(position(-1,1,-1), new Cubelet(Color.WHITE,Color.BLUE, Color.ORANGE,Color.WHITE, Color.BLUE));
@@ -67,7 +67,6 @@ public class Cube {
         cubes.put(position(1,-1,1), new Cubelet(Color.RED,Color.GREEN, Color.YELLOW,Color.RED, Color.GREEN));
         cubes.put(position(-1,-1,-1), new Cubelet(Color.YELLOW,Color.BLUE, Color.ORANGE,Color.YELLOW, Color.BLUE));
         cubes.put(position(1,-1,-1), new Cubelet(Color.YELLOW,Color.GREEN, Color.ORANGE,Color.YELLOW, Color.GREEN));
-        
     }
 
 
