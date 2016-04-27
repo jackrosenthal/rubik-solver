@@ -36,17 +36,38 @@ public class Cube {
     public Cube() {
         this.cubes = new HashMap<Position, Cubelet>(26);
 
-        /* Center peices */
-        cubes.put(position(0, 1, 0), new Cubelet(Color.WHITE, null, null, Color.WHITE));
-        cubes.put(position(1, 0, 0), new Cubelet(Color.GREEN, null, null, Color.GREEN));
-        cubes.put(position(0, 0, 1), new Cubelet(Color.RED, null, null, Color.RED));
-        cubes.put(position(0, -1, 0), new Cubelet(Color.YELLOW, null, null, Color.YELLOW));
-        cubes.put(position(-1, 0, 0), new Cubelet(Color.BLUE, null, null, Color.BLUE));
-        cubes.put(position(0, 0, -1), new Cubelet(Color.ORANGE, null, null, Color.ORANGE));
+        /* Center pieces */
+        cubes.put(position(0, 1, 0), new Cubelet(Color.WHITE, null, null, Color.WHITE, null));
+        cubes.put(position(1, 0, 0), new Cubelet(Color.GREEN, null, null, Color.GREEN, null));
+        cubes.put(position(0, 0, 1), new Cubelet(Color.RED, null, null, Color.RED, null));
+        cubes.put(position(0, -1, 0), new Cubelet(Color.YELLOW, null, null, Color.YELLOW, null));
+        cubes.put(position(-1, 0, 0), new Cubelet(Color.BLUE, null, null, Color.BLUE, null));
+        cubes.put(position(0, 0, -1), new Cubelet(Color.ORANGE, null, null, Color.ORANGE, null));
 
-        /* TODO: Edge peices */
-
-        /* TODO: Corner peices */
+        /* Edge pieces */
+        cubes.put(position(-1,1,0), new Cubelet(Color.WHITE,Color.BLUE,null,Color.WHITE, null));
+        cubes.put(position(0,1,1), new Cubelet(Color.WHITE,Color.RED,null,Color.WHITE, null));
+        cubes.put(position(1,1,0), new Cubelet(Color.WHITE,Color.GREEN,null,Color.WHITE, null));
+        cubes.put(position(0,1,-1), new Cubelet(Color.WHITE,Color.ORANGE,null,Color.WHITE, null));  
+        cubes.put(position(1,0,1), new Cubelet(Color.RED,Color.GREEN,null,Color.RED, null));
+        cubes.put(position(1,-1,0), new Cubelet(Color.GREEN,Color.YELLOW,null,Color.GREEN, null));
+        cubes.put(position(1,0,-1), new Cubelet(Color.GREEN,Color.ORANGE,null,Color.GREEN, null));
+        cubes.put(position(-1,0,1), new Cubelet(Color.BLUE,Color.RED,null,Color.BLUE, null));
+        cubes.put(position(-1,-1,0), new Cubelet(Color.BLUE,Color.YELLOW,null,Color.BLUE, null));
+        cubes.put(position(-1,0,-1), new Cubelet(Color.BLUE,Color.ORANGE,null,Color.BLUE, null)); 
+        cubes.put(position(0,-1,1), new Cubelet(Color.RED,Color.YELLOW,null,Color.RED, null));
+        cubes.put(position(0,-1,-1), new Cubelet(Color.ORANGE,Color.YELLOW,null,Color.ORANGE, null));
+        
+        /* TODO: Corner pieces */
+        cubes.put(position(-1,1,1), new Cubelet(Color.WHITE,Color.BLUE, Color.RED,Color.WHITE, Color.BLUE));
+        cubes.put(position(1,1,1), new Cubelet(Color.WHITE,Color.GREEN, Color.RED,Color.WHITE, Color.GREEN));
+        cubes.put(position(-1,1,-1), new Cubelet(Color.WHITE,Color.BLUE, Color.ORANGE,Color.WHITE, Color.BLUE));
+        cubes.put(position(1,1,1), new Cubelet(Color.WHITE,Color.ORANGE, Color.GREEN,Color.WHITE, Color.ORANGE));
+        cubes.put(position(-1,-1,1), new Cubelet(Color.YELLOW,Color.BLUE, Color.RED,Color.YELLOW, Color.BLUE));
+        cubes.put(position(1,-1,1), new Cubelet(Color.RED,Color.GREEN, Color.YELLOW,Color.RED, Color.GREEN));
+        cubes.put(position(-1,-1,-1), new Cubelet(Color.YELLOW,Color.BLUE, Color.ORANGE,Color.YELLOW, Color.BLUE));
+        cubes.put(position(1,-1,-1), new Cubelet(Color.YELLOW,Color.GREEN, Color.ORANGE,Color.YELLOW, Color.GREEN));
+        
     }
 
 
