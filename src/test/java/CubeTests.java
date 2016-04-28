@@ -163,6 +163,6 @@ public class CubeTests {
         /* The right side should still be GREEN */
         for (int i = -1; i < 2; i++)
             for (int j = -1; j < 2; j++)
-                assertEquals(cube.getPos(cube.position(1,i,j), cube.position(1,0,0)), Color.GREEN);
+                assertEquals(cube.getPos(cube.position(1,i,j), cube.position(1,0,0)), Color.GREEN); 
     }
 }

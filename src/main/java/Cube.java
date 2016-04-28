@@ -75,6 +75,9 @@ public class Cube {
                 rotation = rotation.charAt(0) + "cc";
             }
         }
+        else {
+            rotation = rotation.charAt(0) + "c";
+        }
         if (refFace ==  Color.RED) {
             newRot = redRefFace(rotation.charAt(0), rotation);
             
