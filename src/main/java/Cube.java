@@ -68,6 +68,221 @@ public class Cube {
         cubes.put(position(1,-1,-1), new Cubelet(Color.YELLOW,Color.GREEN, Color.ORANGE,position(0, -1, 0), position(1, 0, 0)));
     }
 
+    public void rotate(Color refFace, String rotation) {
+        String newRot;
+        if (rotation.length()!=1) {
+            if (rotation.charAt(1) == '\'') {
+                rotation = rotation.charAt(0) + "cc";
+            }
+        }
+        if (refFace ==  Color.RED) {
+            newRot = redRefFace(rotation.charAt(0), rotation);
+            
+        }
+        else if (refFace ==  Color.GREEN) {
+            newRot = greenRefFace(rotation.charAt(0), rotation);
+        }
+        else if (refFace ==  Color.BLUE) {
+            newRot = blueRefFace(rotation.charAt(0), rotation);
+        }
+        else if (refFace ==  Color.YELLOW) {
+            newRot = yellowRefFace(rotation.charAt(0), rotation);
+        }
+        else if (refFace ==  Color.ORANGE) {
+            newRot = orangeRefFace(rotation.charAt(0), rotation);
+        }
+        else {
+            newRot = rotation;
+        }
+        rotate(newRot.charAt(0), newRot.substring(1));
+    }
+    
+    private String redRefFace(char rotFace, String direct) {
+            if (rotFace == 'U') {
+                if(direct == "c") { 
+                    return'B'+"cc";
+                }
+                else if(direct == "cc") {
+                    return 'B'+"c";
+                }
+                else {
+                    return 'B'+"2";
+                }
+            }
+            else if (rotFace == 'D') {
+                if(direct == "c") { 
+                    return'F'+"cc";
+                }
+                else if(direct == "cc") {
+                    return 'F'+"c";
+                }
+                else {
+                    return 'F'+"2";
+                }
+            }
+            else if (rotFace == 'F') {
+               return 'U'+ direct;
+            }
+            else if (rotFace == 'B') {
+                return 'D'+ direct;
+             }
+            else {
+               return rotFace + direct;
+            }
+        }
+    
+    private String greenRefFace(char rotFace, String direct) {
+        if (rotFace == 'F') {
+            if(direct == "c") { 
+                return'R'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'R'+"c";
+            }
+            else {
+                return 'R'+"2";
+            }
+        }
+        else if (rotFace == 'B') {
+            if(direct == "c") { 
+                return'L'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'L'+"c";
+            }
+            else {
+                return 'L'+"2";
+            }
+        }
+        else if (rotFace == 'L') {
+           return 'F'+ direct;
+        }
+        else if (rotFace == 'R') {
+            return 'B'+ direct;
+         }
+        else {
+           return rotFace + direct;
+        }
+    }
+    
+    private String blueRefFace(char rotFace, String direct) {
+        if (rotFace == 'L') {
+            if(direct == "c") { 
+                return'B'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'B'+"c";
+            }
+            else {
+                return 'B'+"2";
+            }
+        }
+        else if (rotFace == 'R') {
+            if(direct == "c") { 
+                return'F'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'F'+"c";
+            }
+            else {
+                return 'F'+"2";
+            }
+        }
+        else if (rotFace == 'F') {
+           return 'L'+ direct;
+        }
+        else if (rotFace == 'B') {
+            return 'R'+ direct;
+         }
+        else {
+           return rotFace + direct;
+        }
+    }
+    
+    private String yellowRefFace(char rotFace, String direct) {
+        if (rotFace == 'F') {
+            if(direct == "c") { 
+                return'B'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'B'+"c";
+            }
+            else {
+                return 'B'+"2";
+            }
+        }
+        else if (rotFace == 'B') {
+            if(direct == "c") { 
+                return'F'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'F'+"c";
+            }
+            else {
+                return 'F'+"2";
+            }
+        }
+        else if (rotFace == 'L') {
+            if(direct == "c") { 
+                return'R'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'R'+"c";
+            }
+            else {
+                return 'R'+"2";
+            }
+        }
+        else if (rotFace == 'R') {
+            if(direct == "c") { 
+                return'L'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'L'+"c";
+            }
+            else {
+                return 'L'+"2";
+            }
+        }
+        else {
+           return rotFace + direct;
+        }
+    }
+ 
+    private String orangeRefFace(char rotFace, String direct) {
+        if (rotFace == 'F') {
+            if(direct == "c") { 
+                return'D'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'D'+"c";
+            }
+            else {
+                return 'D'+"2";
+            }
+        }
+        else if (rotFace == 'B') {
+            if(direct == "c") { 
+                return'U'+"cc";
+            }
+            else if(direct == "cc") {
+                return 'U'+"c";
+            }
+            else {
+                return 'U'+"2";
+            }
+        }
+        else if (rotFace == 'U') {
+           return 'F'+ direct;
+        }
+        else if (rotFace == 'D') {
+            return 'B'+ direct;
+         }
+        else {
+           return rotFace + direct;
+        }
+    }
+    
     public void rotate(char planeRot, String dir) {
         if (planeRot == 'U') {
             rotate(position(0,0,1), dir);
