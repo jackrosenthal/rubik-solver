@@ -24,4 +24,16 @@ public class Cubelet {
         this.orientation1 = orientation1;
         this.orientation2 = orientation2;
     }
+
+    public String toString() {
+        return "Cubelet{"+color1+","+color2+","+color3+","+orientation1+","+orientation2+"}";
+    }
+
+    public boolean equals(Cubelet other) {
+        return color1 == other.color1 &&
+               color2 == other.color2 &&
+               color3 == other.color3 &&
+               orientation1.equals(other.orientation1) &&
+               (orientation2 != null)?orientation2.equals(other.orientation2):true;
+    }
 }

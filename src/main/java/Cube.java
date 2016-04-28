@@ -61,7 +61,7 @@ public class Cube {
         cubes.put(position(-1,1,1), new Cubelet(Color.WHITE,Color.BLUE, Color.RED,position(0, 1, 0), position(-1, 0, 0)));
         cubes.put(position(1,1,1), new Cubelet(Color.WHITE,Color.GREEN, Color.RED,position(0, 1, 0), position(1, 0, 0)));
         cubes.put(position(-1,1,-1), new Cubelet(Color.WHITE,Color.BLUE, Color.ORANGE,position(0, 1, 0), position(-1, 0, 0)));
-        cubes.put(position(1,1,1), new Cubelet(Color.WHITE,Color.ORANGE, Color.GREEN,position(0, 1, 0), position(0, 0, -1)));
+        cubes.put(position(1,1,-1), new Cubelet(Color.WHITE,Color.ORANGE, Color.GREEN,position(0, 1, 0), position(0, 0, -1)));
         cubes.put(position(-1,-1,1), new Cubelet(Color.YELLOW,Color.BLUE, Color.RED,position(0, -1, 0), position(-1, 0, 0)));
         cubes.put(position(1,-1,1), new Cubelet(Color.RED,Color.GREEN, Color.YELLOW,position(0, 0, 1), position(1, 0, 0)));
         cubes.put(position(-1,-1,-1), new Cubelet(Color.YELLOW,Color.BLUE, Color.ORANGE,position(0, -1, 0), position(-1, 0, 0)));
@@ -118,7 +118,6 @@ public class Cube {
                     newCubes.put(newPosition, mCubelet);
                 }
             }
-            cubes = newCubes;
         }
         if (planeRot.y != 0) {
             for (int i = -1; i < 2; i++) {
@@ -146,6 +145,7 @@ public class Cube {
                 }
             }
         }
+        cubes = newCubes;
     }
 
     private static Position matxMultX(Position oldPosition) {
@@ -157,7 +157,7 @@ public class Cube {
     }
 
     private static Position matxMultY(Position oldPosition) {
-        int [][] rotMtx  = {{0,0,1},{0,1,0},{-1,0,0}};
+        int [][] rotMtx  = {{0,0,-1},{0,1,0},{1,0,0}};
         int xPos = oldPosition.x*rotMtx[0][0] + oldPosition.y*rotMtx[0][1] + oldPosition.z*rotMtx[0][2];
         int yPos = oldPosition.x*rotMtx[1][0] + oldPosition.y*rotMtx[1][1] + oldPosition.z*rotMtx[1][2];
         int zPos = oldPosition.x*rotMtx[2][0] + oldPosition.y*rotMtx[2][1] + oldPosition.z*rotMtx[2][2];
@@ -165,7 +165,7 @@ public class Cube {
     }
 
     private static Position matxMultZ(Position oldPosition) {
-        int [][] rotMtx  = {{0,-1,0},{1,0,0},{0,0,1}};
+        int [][] rotMtx  = {{0,1,0},{-1,0,0},{0,0,1}};
         int xPos = oldPosition.x*rotMtx[0][0] + oldPosition.y*rotMtx[0][1] + oldPosition.z*rotMtx[0][2];
         int yPos = oldPosition.x*rotMtx[1][0] + oldPosition.y*rotMtx[1][1] + oldPosition.z*rotMtx[1][2];
         int zPos = oldPosition.x*rotMtx[2][0] + oldPosition.y*rotMtx[2][1] + oldPosition.z*rotMtx[2][2];
@@ -175,7 +175,9 @@ public class Cube {
     public Color getPos(Position pos, Position face) {
         Cubelet c = cubes.get(pos);
         if (c.orientation1.equals(face)) return c.color1;
+        if (c.orientation2 == null) return c.color2;
         if (c.orientation2.equals(face)) return c.color2;
         return c.color3;
     }
+
 }
