@@ -47,13 +47,13 @@ public class Cube {
         cubes.put(position(-1,1,0), new Cubelet(Color.WHITE,Color.BLUE,null,position(0, 1, 0), null));
         cubes.put(position(0,1,1), new Cubelet(Color.WHITE,Color.RED,null,position(0, 1, 0), null));
         cubes.put(position(1,1,0), new Cubelet(Color.WHITE,Color.GREEN,null,position(0, 1, 0), null));
-        cubes.put(position(0,1,-1), new Cubelet(Color.WHITE,Color.ORANGE,null,position(0, 1, 0), null));  
+        cubes.put(position(0,1,-1), new Cubelet(Color.WHITE,Color.ORANGE,null,position(0, 1, 0), null));
         cubes.put(position(1,0,1), new Cubelet(Color.RED,Color.GREEN,null,position(0, 0, 1), null));
         cubes.put(position(1,-1,0), new Cubelet(Color.GREEN,Color.YELLOW,null,position(1, 0, 0), null));
         cubes.put(position(1,0,-1), new Cubelet(Color.GREEN,Color.ORANGE,null,position(1, 0, 0), null));
         cubes.put(position(-1,0,1), new Cubelet(Color.BLUE,Color.RED,null,position(-1, 0, 0), null));
         cubes.put(position(-1,-1,0), new Cubelet(Color.BLUE,Color.YELLOW,null,position(-1, 0, 0), null));
-        cubes.put(position(-1,0,-1), new Cubelet(Color.BLUE,Color.ORANGE,null,position(-1, 0, 0), null)); 
+        cubes.put(position(-1,0,-1), new Cubelet(Color.BLUE,Color.ORANGE,null,position(-1, 0, 0), null));
         cubes.put(position(0,-1,1), new Cubelet(Color.RED,Color.YELLOW,null,position(0, 0, 1), null));
         cubes.put(position(0,-1,-1), new Cubelet(Color.ORANGE,Color.YELLOW,null,position(0, 0, -1), null));
 
@@ -88,21 +88,17 @@ public class Cube {
             rotate(position(0,-1,0), dir);
         }
     }
-    
-    private void rotate(Position planeRot, String dir)
-    {
-        if (dir == "cc")
-        {
+
+    private void rotate(Position planeRot, String dir) {
+        if (dir == "cc") {
             rotate(planeRot);
         }
-        else if (dir == "c")
-        {
+        else if (dir == "c") {
             rotate(planeRot);
             rotate(planeRot);
             rotate(planeRot);
         }
-        else
-        {
+        else {
             rotate(planeRot);
             rotate(planeRot);
         }
@@ -119,7 +115,7 @@ public class Cube {
                     if (mCubelet.orientation2 != null) {
                         mCubelet.orientation2 = matxMultZ(mCubelet.orientation2);
                     }
-                    newCubes.put(newPosition, mCubelet);  
+                    newCubes.put(newPosition, mCubelet);
                 }
             }
             cubes = newCubes;
@@ -133,8 +129,8 @@ public class Cube {
                     if (mCubelet.orientation2 != null) {
                         mCubelet.orientation2 = matxMultY(mCubelet.orientation2);
                     }
-                    newCubes.put(newPosition, mCubelet);  
-                } 
+                    newCubes.put(newPosition, mCubelet);
+                }
             }
         }
         if (planeRot.x != 0) {
@@ -146,8 +142,8 @@ public class Cube {
                     if (mCubelet.orientation2 != null) {
                         mCubelet.orientation2 = matxMultX(mCubelet.orientation2);
                     }
-                    newCubes.put(newPosition, mCubelet);  
-                } 
+                    newCubes.put(newPosition, mCubelet);
+                }
             }
         }
     }
@@ -174,5 +170,12 @@ public class Cube {
         int yPos = oldPosition.x*rotMtx[1][0] + oldPosition.y*rotMtx[1][1] + oldPosition.z*rotMtx[1][2];
         int zPos = oldPosition.x*rotMtx[2][0] + oldPosition.y*rotMtx[2][1] + oldPosition.z*rotMtx[2][2];
         return position(xPos, yPos, zPos);
+    }
+
+    public Color getPos(Position pos, Position face) {
+        Cubelet c = cubes.get(pos);
+        if (c.orientation1.equals(face)) return c.color1;
+        if (c.orientation2.equals(face)) return c.color2;
+        return c.color3;
     }
 }
