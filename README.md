@@ -16,15 +16,3 @@ White: Positive Y
 Green: Positive X
 
 Red: Positive Z
-
-## TODO
-By Wednesday night:
-
-Ariel / Jack
-* Position
-* Cubelet
-* Cube Structure
-  + Rotation (and tests)
-
-Nick
-* Rubik's cube representation with OpenGL
