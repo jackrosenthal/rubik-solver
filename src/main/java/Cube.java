@@ -406,7 +406,7 @@ public class Cube {
         for (int i = -1; i < 2; i++)
             for (int j = -1; j < 2; j++)
                 for (int k = -1; k < 2; k++)
-                    cpy.put(position(i,j,k), cubes.get(position(i,j,k)).copy());
+                    cpy.cubes.put(position(i,j,k), cubes.get(position(i,j,k)).copy());
         return cpy;
     }
 
