@@ -77,7 +77,8 @@ public class Model {
     }
 
     public void mainLoop() {
-        while (glfwWindowShouldClose(window) != GLFW_TRUE) {
+
+        for(int i = 0; glfwWindowShouldClose(window) != GLFW_TRUE; i++) {
             // These buffers are Java's solution to pass by reference for
             // primitve types. The C version of GLFW takes pointers for this
             // function, Java obviously does not support these, so we use
@@ -99,6 +100,13 @@ public class Model {
             float time = (float) glfwGetTime();
             glRotatef(time * 50f, 0f, 1f, 0f);
             glRotatef(45f, 1f, 0f, 0f);
+
+            steps.get(i).drawCube();
+
+            glfwSwapBuffers(window);
+            glfwPollEvents();
+            width.flip();
+            height.flip();
         }
     }
 

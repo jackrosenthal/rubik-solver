@@ -39,11 +39,10 @@ public class Cubelet {
                (orientation2 != null)?orientation2.equals(other.orientation2):true;
     }
 
-    public void drawCubelet() {
+    public void drawCubelet(Position coord) {
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
-        // is this the correct way to translate?
-        glTranslate(orientation1.x, orientation1.y, orientation1.z);
+        glTranslate(coord.x, coord.y, coord.z);
         glScalef(glScale, glScale, glScale);
 
         glBegin(GL_QUADS);
