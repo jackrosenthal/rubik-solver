@@ -42,6 +42,7 @@ public class Cubelet {
     public void drawCubelet() {
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
+        // is this the correct way to translate?
         glTranslate(orientation1.x, orientation1.y, orientation1.z);
         glScalef(glScale, glScale, glScale);
 

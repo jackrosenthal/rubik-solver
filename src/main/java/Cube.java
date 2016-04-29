@@ -398,4 +398,10 @@ public class Cube {
         return c.color3;
     }
 
+    public void drawCube(long window, IntBuffer width, IntBuffer height) {
+        for (Map.Entry<Position, Cubelet> entry : cubes.entrySet()) {
+            entry.getValue().drawCubelet();
+        }
+    }
+
 }
