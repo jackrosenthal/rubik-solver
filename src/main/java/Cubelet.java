@@ -30,6 +30,7 @@ public class Cubelet {
 
     public Position orientation1;
     public Position orientation2;
+    private Cube cube;
 
     public final static float glScale = 0.333f;
     // these are colors, I promise...
@@ -149,5 +150,19 @@ public class Cubelet {
         glEnd();
 
         glPopMatrix();
+    }
+    public Position orientation(int i, Position pos) {
+        if (i < 1 || i > 3)
+            throw new RuntimeException("Invalid orinetation: " + i);
+        if (i == 1) return orientation1;
+        if (i == 2 && orientation2 != null) return orientation2;
+        if (i == 2) return cube.position(pos.x ^ orientation1.x,
+                                         pos.y ^ orientation1.y,
+                                         pos.z ^ orientation1.z);
+        if (i == 3 && orientation2 == null) return null;
+        if (i == 3) return cube.position(pos.x ^ orientation1.x ^ orientation2.x,
+                                         pos.y ^ orientation1.y ^ orientation2.y,
+                                         pos.z ^ orientation1.z ^ orientation2.z);
+        return null;
     }
 }
