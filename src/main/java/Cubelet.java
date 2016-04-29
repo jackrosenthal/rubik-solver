@@ -9,6 +9,20 @@
  *
  * The orientation defines which color color1 faces.
  */
+
+import java.util.Map;
+import java.util.HashMap;
+import java.nio.IntBuffer;
+import org.lwjgl.BufferUtils;
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWKeyCallback;
+import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL;
+
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.system.MemoryUtil.NULL;
+
 public class Cubelet {
     public Color color1;
     public Color color2;
@@ -17,12 +31,13 @@ public class Cubelet {
     public Position orientation1;
     public Position orientation2;
 
-    public final static float glScale = 0.333;
+    public final static float glScale = 0.333f;
     // these are colors, I promise...
     // actually using Color a tuple of 3 floats ;)
-    public static final Map<Position,float[4][3]> faceMap;
+    public static Map<Position,float[][]> faceMap;
 
     static {
+        faceMap = new HashMap<Position,float[][]>();
         faceMap.put(new Position(0,1,0), new float[][]
                 {{-0.5f,0.5f,0.5f}, {0.5f,0.5f,0.5f},
                 {0.5f,0.5f,-0.5f}, {-0.5f,0.5f,-0.5f}});
@@ -34,7 +49,7 @@ public class Cubelet {
                 {0.5f,0.5f,0.5f}, {-0.5f,0.5f,0.5f}});
         // these may not have the correct colors
         faceMap.put(new Position(0,-1,0), new float[][]
-                {{-0.5f,-0.5f,0.5f}, {-0.5f,0.5f,0.5f};
+                {{-0.5f,-0.5f,0.5f}, {-0.5f,0.5f,0.5f},
                 {-0.5f,0.5f,-0.5f}, {-0.5f,-0.5f,-0.5f}});
         faceMap.put(new Position(-1,0,0), new float[][]
                 {{0.5f,-0.5f,0.5f}, {-0.5f,-0.5f,0.5f},
@@ -67,21 +82,26 @@ public class Cubelet {
     public void drawCubelet(Position coord) {
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
-        glTranslate(coord.x, coord.y, coord.z);
+        glTranslatef(coord.x, coord.y, coord.z);
         glScalef(glScale, glScale, glScale);
 
         glBegin(GL_QUADS);
-        for (Position pos : faceMaps) {
-            if (pos == orientation1)
+        for (Map.Entry<Position, float[][]> entry : faceMap.entrySet()) {
+            if (entry.getKey() == orientation1)
                 glColor3f(color1.r, color1.g, color1.b);
-            else if (color2 != null && pos == orientation2)
+            else if (color2 != null && entry.getKey() == orientation2)
                 glColor3f(color2.r, color2.g, color2.b);
-            else if (color3 != null && pos == orientation3)
+            else if (color3 != null && entry.getKey() == orientation3)
                 glColor3f(color3.r, color3.g, color3.b);
             else
                 glColor3f(0f, 0f, 0f);
 
-
+            for(int i = 0; i < 4; i++) {
+                glVertex3f(faceMap.get(entry.getKey())[i][0],
+                    faceMap.get(entry.getKey())[i][1],
+                    faceMap.get(entry.getKey())[i][2]
+                );
+            }
         }
 
         glBegin(GL_QUADS);

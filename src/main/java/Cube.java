@@ -2,6 +2,8 @@
  * The data structure to store the cube
  */
 import java.util.HashMap;
+import java.util.Map;
+import org.lwjgl.opengl.GL;
 
 public class Cube {
     public HashMap<Position, Cubelet> cubes;
@@ -400,7 +402,7 @@ public class Cube {
 
     public void drawCube() {
         for (Map.Entry<Position, Cubelet> entry : cubes.entrySet()) {
-            entry.getValue().drawCubelet(entry.getKey(););
+            entry.getValue().drawCubelet(entry.getKey());
         }
     }
 
