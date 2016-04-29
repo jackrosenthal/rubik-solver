@@ -18,6 +18,31 @@ public class Cubelet {
     public Position orientation2;
 
     public final static float glScale = 0.333;
+    // these are colors, I promise...
+    // actually using Color a tuple of 3 floats ;)
+    public static final Map<Position,float[4][3]> faceMap;
+
+    static {
+        faceMap.put(new Position(0,1,0), new float[][]
+                {{-0.5f,0.5f,0.5f}, {0.5f,0.5f,0.5f},
+                {0.5f,0.5f,-0.5f}, {-0.5f,0.5f,-0.5f}});
+        faceMap.put(new Position(1,0,0), new float[][]
+                {{0.5f,0.5f,0.5f}, {0.5f,-0.5f,0.5f},
+                {0.5f,-0.5f,-0.5f}, {0.5f,0.5f,-0.5f}});
+        faceMap.put(new Position(0,0,1), new float[][]
+                {{-0.5f,-0.5f,0.5f}, {0.5f,-0.5f,0.5f},
+                {0.5f,0.5f,0.5f}, {-0.5f,0.5f,0.5f}});
+        // these may not have the correct colors
+        faceMap.put(new Position(0,-1,0), new float[][]
+                {{-0.5f,-0.5f,0.5f}, {-0.5f,0.5f,0.5f};
+                {-0.5f,0.5f,-0.5f}, {-0.5f,-0.5f,-0.5f}});
+        faceMap.put(new Position(-1,0,0), new float[][]
+                {{0.5f,-0.5f,0.5f}, {-0.5f,-0.5f,0.5f},
+                {-0.5f,-0.5f,-0.5f}, {0.5f,-0.5f,-0.5f}});
+        faceMap.put(new Position(0,0,-1), new float[][]
+                {{0.5f,0.5f,-0.5f}, {-0.5f,0.5f,-0.5f},
+                {-0.5f,-0.5f,-0.5f}, {0.5f,-0.5f,-0.5f}});
+    }
 
     public Cubelet(Color c1, Color c2, Color c3, Position orientation1, Position orientation2) {
         this.color1 = c1;
@@ -46,7 +71,20 @@ public class Cubelet {
         glScalef(glScale, glScale, glScale);
 
         glBegin(GL_QUADS);
+        for (Position pos : faceMaps) {
+            if (pos == orientation1)
+                glColor3f(color1.r, color1.g, color1.b);
+            else if (color2 != null && pos == orientation2)
+                glColor3f(color2.r, color2.g, color2.b);
+            else if (color3 != null && pos == orientation3)
+                glColor3f(color3.r, color3.g, color3.b);
+            else
+                glColor3f(0f, 0f, 0f);
 
+
+        }
+
+        glBegin(GL_QUADS);
         // Front X - Green
         glColor3f(/* XXX */);
         glVertex3f(0.5f,0.5f,0.5f);
