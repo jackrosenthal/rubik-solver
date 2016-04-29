@@ -52,4 +52,8 @@ public class Cubelet {
                                          pos.z ^ orientation1.z ^ orientation2.z);
         return null;
     }
+
+    public Cubelet copy() {
+        return new Cubelet(color1, color2, color3, orientation1, orientation2);
+    }
 }

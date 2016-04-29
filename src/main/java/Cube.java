@@ -398,4 +398,16 @@ public class Cube {
         return c.color3;
     }
 
+    /**
+     * Perform a copy of the cube
+     */
+    public Cube copy() {
+        Cube cpy = new Cube();
+        for (int i = -1; i < 2; i++)
+            for (int j = -1; j < 2; j++)
+                for (int k = -1; k < 2; k++)
+                    cpy.put(position(i,j,k), cubes.get(position(i,j,k)).copy());
+        return cpy;
+    }
+
 }
