@@ -101,7 +101,8 @@ public class Cubelet {
                 glColor3f(0f, 0f, 0f);
 
             for(int i = 0; i < 4; i++) {
-                glVertex3f(faceMap.get(entry.getKey())[i][0],
+                glVertex3f(
+                    faceMap.get(entry.getKey())[i][0],
                     faceMap.get(entry.getKey())[i][1],
                     faceMap.get(entry.getKey())[i][2]
                 );

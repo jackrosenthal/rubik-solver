@@ -82,7 +82,6 @@ public class Cube {
         }
         if (refFace ==  Color.RED) {
             newRot = redRefFace(rotation.charAt(0), rotation);
-            
         }
         else if (refFace ==  Color.GREEN) {
             newRot = greenRefFace(rotation.charAt(0), rotation);
@@ -101,7 +100,7 @@ public class Cube {
         }
         rotate(newRot.charAt(0), newRot.substring(1));
     }
-    
+
     private String redRefFace(char rotFace, String direct) {
             if (rotFace == 'U') {
                 if(direct == "c") { 
