@@ -32,29 +32,32 @@ public class Cubelet {
     public Position orientation2;
     private Cube cube;
 
-    public final static float glScale = 0.333f;
-    // these are colors, I promise...
-    // actually using Color a tuple of 3 floats ;)
+    public final static float glScale = 0.320f;
     public static Map<Position,float[][]> faceMap;
 
     static {
         faceMap = new HashMap<Position,float[][]>();
+        // white
         faceMap.put(new Position(0,1,0), new float[][]
                 {{-0.5f,0.5f,0.5f}, {0.5f,0.5f,0.5f},
                 {0.5f,0.5f,-0.5f}, {-0.5f,0.5f,-0.5f}});
+        // green
         faceMap.put(new Position(1,0,0), new float[][]
                 {{0.5f,0.5f,0.5f}, {0.5f,-0.5f,0.5f},
                 {0.5f,-0.5f,-0.5f}, {0.5f,0.5f,-0.5f}});
+        // red
         faceMap.put(new Position(0,0,1), new float[][]
                 {{-0.5f,-0.5f,0.5f}, {0.5f,-0.5f,0.5f},
                 {0.5f,0.5f,0.5f}, {-0.5f,0.5f,0.5f}});
-        // these may not have the correct colors
+        // yellow
         faceMap.put(new Position(0,-1,0), new float[][]
-                {{-0.5f,-0.5f,0.5f}, {-0.5f,0.5f,0.5f},
-                {-0.5f,0.5f,-0.5f}, {-0.5f,-0.5f,-0.5f}});
-        faceMap.put(new Position(-1,0,0), new float[][]
                 {{0.5f,-0.5f,0.5f}, {-0.5f,-0.5f,0.5f},
                 {-0.5f,-0.5f,-0.5f}, {0.5f,-0.5f,-0.5f}});
+        // blue
+        faceMap.put(new Position(-1,0,0), new float[][]
+                {{-0.5f,-0.5f,0.5f}, {-0.5f,0.5f,0.5f},
+                {-0.5f,0.5f,-0.5f}, {-0.5f,-0.5f,-0.5f}});
+        // orange
         faceMap.put(new Position(0,0,-1), new float[][]
                 {{0.5f,0.5f,-0.5f}, {-0.5f,0.5f,-0.5f},
                 {-0.5f,-0.5f,-0.5f}, {0.5f,-0.5f,-0.5f}});
@@ -83,16 +86,16 @@ public class Cubelet {
     public void drawCubelet(Position coord) {
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
-        glTranslatef(coord.x, coord.y, coord.z);
+        glTranslatef(coord.x/3f, coord.y/3f, coord.z/3f);
         glScalef(glScale, glScale, glScale);
 
         glBegin(GL_QUADS);
         for (Map.Entry<Position, float[][]> entry : faceMap.entrySet()) {
-            if (entry.getKey() == orientation1)
+            if (entry.getKey().equals(orientation(1, coord)))
                 glColor3f(color1.r, color1.g, color1.b);
-            else if (color2 != null && entry.getKey() == orientation2)
+            else if (color2 != null && entry.getKey().equals(orientation(2, coord)))
                 glColor3f(color2.r, color2.g, color2.b);
-            else if (color3 != null && entry.getKey() == orientation3)
+            else if (color3 != null && entry.getKey().equals(orientation(3, coord)))
                 glColor3f(color3.r, color3.g, color3.b);
             else
                 glColor3f(0f, 0f, 0f);
@@ -104,56 +107,13 @@ public class Cubelet {
                 );
             }
         }
-
-        glBegin(GL_QUADS);
-        // Front X - Green
-        glColor3f(/* XXX */);
-        glVertex3f(0.5f,0.5f,0.5f);
-        glVertex3f(0.5f,-0.5f,0.5f);
-        glVertex3f(0.5f,-0.5f,-0.5f);
-        glVertex3f(0.5f,0.5f,-0.5f);
-
-        // Front Y - White
-        glColor3f(/* XXX */);
-        glVertex3f(-0.5f,0.5f,0.5f);
-        glVertex3f(0.5f,0.5f,0.5f);
-        glVertex3f(0.5f,0.5f,-0.5f);
-        glVertex3f(-0.5f,0.5f,-0.5f);
-
-        // Front Z - Red
-        glColor3f(/* XXX */);
-        glVertex3f(-0.5f,-0.5f,0.5f);
-        glVertex3f(0.5f,-0.5f,0.5f);
-        glVertex3f(0.5f,0.5f,0.5f);
-        glVertex3f(-0.5f,0.5f,0.5f);
-
-        // Back X - XXX
-        glColor3f(/* XXX */);
-        glVertex3f(-0.5f,-0.5f,0.5f);
-        glVertex3f(-0.5f,0.5f,0.5f);
-        glVertex3f(-0.5f,0.5f,-0.5f);
-        glVertex3f(-0.5f,-0.5f,-0.5f);
-
-        // Back Y - XXX
-        glColor3f(/* XXX */);
-        glVertex3f(0.5f,-0.5f,0.5f);
-        glVertex3f(-0.5f,-0.5f,0.5f);
-        glVertex3f(-0.5f,-0.5f,-0.5f);
-        glVertex3f(0.5f,-0.5f,-0.5f);
-        // Back Z - XXX
-        glColor3f(/* XXX */);
-        glVertex3f(0.5f,0.5f,-0.5f);
-        glVertex3f(-0.5f,0.5f,-0.5f);
-        glVertex3f(-0.5f,-0.5f,-0.5f);
-        glVertex3f(0.5f,-0.5f,-0.5f);
-
         glEnd();
 
         glPopMatrix();
     }
     public Position orientation(int i, Position pos) {
         if (i < 1 || i > 3)
-            throw new RuntimeException("Invalid orinetation: " + i);
+            throw new RuntimeException("Invalid orientation: " + i);
         if (i == 1) return orientation1;
         if (i == 2 && orientation2 != null) return orientation2;
         if (i == 2) return cube.position(pos.x ^ orientation1.x,

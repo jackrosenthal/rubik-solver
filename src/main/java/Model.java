@@ -41,6 +41,8 @@ public class Model {
         }
     };
 
+    public Model() {}
+
     public Model(List<Cube> steps) {
         this.steps = steps;
     }
@@ -98,10 +100,11 @@ public class Model {
             glTranslatef(0f, 0f, -5f);
 
             float time = (float) glfwGetTime();
-            glRotatef(time * 50f, 0f, 1f, 0f);
+            glRotatef(time * 8f, 0f, 1f, 0f);
             glRotatef(45f, 1f, 0f, 0f);
 
-            steps.get(i).drawCube();
+            //steps.get(i).drawCube();
+            new Cube().drawCube();
 
             glfwSwapBuffers(window);
             glfwPollEvents();
