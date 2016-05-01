@@ -83,6 +83,13 @@ public class Cubelet {
                (orientation2 != null)?orientation2.equals(other.orientation2):true;
     }
 
+    /**
+     * Will draw a cubelet.
+     *
+     * This should not be called directly, instead it is called by DrawCube
+     * in main/java/Cube.java
+     */
+
     public void drawCubelet(Position coord) {
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();

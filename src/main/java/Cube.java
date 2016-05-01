@@ -285,26 +285,29 @@ public class Cube {
         else {
            return rotFace + direct;
         }
+        
     }
     
     public void rotate(char planeRot, String dir) {
-        if (planeRot == 'U') {
+        switch (planeRot) {
+        case 'U':
             rotate(position(0,0,1), dir);
-        }
-        else if (planeRot == 'D'){
+            break;
+        case 'D':
             rotate(position(0,0,-1), dir);
-        }
-        else if (planeRot == 'L'){
+            break;
+        case 'L':
             rotate(position(-1,0,0), dir);
-        }
-        else if (planeRot == 'R'){
+            break;
+        case 'R':
             rotate(position(1,0,0), dir);
-        }
-        else if (planeRot == 'F'){
+            break;
+        case 'F':
             rotate(position(0,1,0), dir);
-        }
-        else if (planeRot == 'B'){
+            break;
+        case 'B':
             rotate(position(0,-1,0), dir);
+            break;
         }
     }
 
@@ -400,7 +403,7 @@ public class Cube {
     }
 
     /**
-     * Draw the cube to screen
+     * Draw the cube to screen.
      *
      * GLFW must be iniitialized first! See main/java/Model.java
      */
