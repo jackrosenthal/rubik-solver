@@ -400,10 +400,27 @@ public class Cube {
         return c.color3;
     }
 
+    /**
+     * Draw the cube to screen
+     *
+     * GLFW must be iniitialized first! See main/java/Model.java
+     */
     public void drawCube() {
         for (Map.Entry<Position, Cubelet> entry : cubes.entrySet()) {
             entry.getValue().drawCubelet(entry.getKey());
         }
+    }
+
+    /**
+     * Perform a copy of the cube
+     */
+    public Cube copy() {
+        Cube cpy = new Cube();
+        for (int i = -1; i < 2; i++)
+            for (int j = -1; j < 2; j++)
+                for (int k = -1; k < 2; k++)
+                    cpy.cubes.put(position(i,j,k), cubes.get(position(i,j,k)).copy());
+        return cpy;
     }
 
 }
