@@ -90,7 +90,7 @@ public class Cubelet {
      * in main/java/Cube.java
      */
 
-    public void drawCubelet(Position coord) {
+    public void drawCubelet(Position coord, Cube daddy) {
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glTranslatef(coord.x/3f, coord.y/3f, coord.z/3f);
