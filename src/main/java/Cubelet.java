@@ -114,9 +114,6 @@ public class Cubelet {
                     faceMap.get(entry.getKey())[i][2]
                 );
             }
-
-            if (coord.equals(new Position(-1,-1,-1)))
-                System.out.println(this);
         }
         glEnd();
 

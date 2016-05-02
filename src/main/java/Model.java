@@ -23,6 +23,7 @@ public class Model {
      */
 
     public ArrayList<Cube> steps;
+    int cubeIndex;
 
     public long window; // handler for window
     public IntBuffer width, height; // width / height of window
@@ -39,6 +40,7 @@ public class Model {
 
     public Model(ArrayList<Cube> newSteps) {
         this.steps = newSteps;
+        cubeIndex = steps.size()-1;
         rotZ = 0f;
         rotHoriz = 0f;
     }
@@ -75,9 +77,8 @@ public class Model {
     }
 
     public void mainLoop() {
-        Cube c = steps.get(steps.size()-1);
+        Cube c = steps.get(cubeIndex);
         float time = (float)glfwGetTime(), lasttime;
-        int cubeIndex = steps.size()-1;;
         while (glfwWindowShouldClose(window) != GLFW_TRUE) {
             // These buffers are Java's solution to pass by reference for
             // primitve types. The C version of GLFW takes pointers for this
@@ -105,10 +106,7 @@ public class Model {
             /*
             if (steps.peekFirst() != null && (int)(time/2) != (int)(lasttime/2))
                 c = steps.pollFirst(); */
-            if (cubeIndex >= 0 && (int)(time) != (int)(lasttime)) {
-                c = steps.get(cubeIndex);
-                cubeIndex--;
-            }
+            c = steps.get(cubeIndex);
             c.drawCube();
 
             glfwSwapBuffers(window);
@@ -135,11 +133,15 @@ public class Model {
             else if (key == GLFW_KEY_DOWN && action == GLFW_RELEASE)
                 model.rotZ -= 5f;
             else if (key == GLFW_KEY_RIGHT && action == GLFW_RELEASE)
-                model.rotHoriz += 5f;
-            else if (key == GLFW_KEY_LEFT && action == GLFW_RELEASE)
                 model.rotHoriz -= 5f;
-            else if (key == GLFW_KEY_D && action == GLFW_RELEASE)
-                System.out.println("D pressed!");
+            else if (key == GLFW_KEY_LEFT && action == GLFW_RELEASE)
+                model.rotHoriz += 5f;
+            else if (key == GLFW_KEY_A && action == GLFW_RELEASE) {
+                if (model.cubeIndex < model.steps.size()-1) model.cubeIndex++;
+            }
+            else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
+                if (model.cubeIndex > 0) model.cubeIndex--;
+            }
         }
     }
 }
