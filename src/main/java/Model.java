@@ -1,6 +1,6 @@
 
 import java.util.List;
-import java.util.Deque;
+import java.util.ArrayList;
 
 import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
@@ -22,30 +22,25 @@ public class Model {
      * work once the cube is solved.
      */
 
-    public List<Cube> steps;
+    public ArrayList<Cube> steps;
 
     public long window; // handler for window
     public IntBuffer width, height; // width / height of window
+    public float rotZ, rotHoriz;
 
     // The following are callbacks for GLFW functions. These are required
     // for informative errors and gather user keyboard input
     private static GLFWErrorCallback errorCallback
         = GLFWErrorCallback.createPrint(System.err);
 
-    private static GLFWKeyCallback keyCallback = new GLFWKeyCallback() {
-        @Override
-        public void invoke(long window, int key, int scancode, int action,
-                int mods) {
-            if (key == GLFW_KEY_Q && action == GLFW_RELEASE) {
-                glfwSetWindowShouldClose(window, GLFW_TRUE);
-            }
-        }
-    };
+    private GLFWKeyCallback keyCallback = new myKeyCallback(this);
 
     public Model() {}
 
-    public Model(List<Cube> steps) {
-        this.steps = steps;
+    public Model(ArrayList<Cube> newSteps) {
+        this.steps = newSteps;
+        rotZ = 0f;
+        rotHoriz = 0f;
     }
 
     public void glfwStart() {
@@ -80,11 +75,10 @@ public class Model {
     }
 
     public void mainLoop() {
-        Cube cube = new Cube();
-        Deque<Cube> d = Scrambler.scramble(cube);
-        Cube c = d.pollFirst();
+        Cube c = steps.get(steps.size()-1);
         float time = (float)glfwGetTime(), lasttime;
-        for(int i = 0; glfwWindowShouldClose(window) != GLFW_TRUE; i++) {
+        int cubeIndex = steps.size()-1;;
+        while (glfwWindowShouldClose(window) != GLFW_TRUE) {
             // These buffers are Java's solution to pass by reference for
             // primitve types. The C version of GLFW takes pointers for this
             // function, Java obviously does not support these, so we use
@@ -105,11 +99,16 @@ public class Model {
 
             lasttime = time;
             time = (float) glfwGetTime();
-            glRotatef(time * 40f, 0f, 1f, 0f);
-            glRotatef(45f, 1f, 0f, 0f);
+            glRotatef(rotZ, 1f, 0f, 0f);
+            glRotatef(rotHoriz, 0f, 1f, 0f);
 
-            //steps.get(i).drawCube();
-            if (d.peekFirst() != null && (int)(time/2) != (int)(lasttime/2)) c = d.pollFirst();
+            /*
+            if (steps.peekFirst() != null && (int)(time/2) != (int)(lasttime/2))
+                c = steps.pollFirst(); */
+            if (cubeIndex >= 0 && (int)(time) != (int)(lasttime)) {
+                c = steps.get(cubeIndex);
+                cubeIndex--;
+            }
             c.drawCube();
 
             glfwSwapBuffers(window);
@@ -119,4 +118,28 @@ public class Model {
         }
     }
 
+    private class myKeyCallback extends GLFWKeyCallback {
+        public Model model;
+
+        public myKeyCallback(Model newModel) {
+            this.model = newModel;
+        }
+
+        @Override
+        public void invoke(long window, int key, int scancode, int action,
+                int mods) {
+            if (key == GLFW_KEY_Q && action == GLFW_RELEASE)
+                glfwSetWindowShouldClose(window, GLFW_TRUE);
+            else if (key == GLFW_KEY_UP && action == GLFW_RELEASE)
+                model.rotZ += 5f;
+            else if (key == GLFW_KEY_DOWN && action == GLFW_RELEASE)
+                model.rotZ -= 5f;
+            else if (key == GLFW_KEY_RIGHT && action == GLFW_RELEASE)
+                model.rotHoriz += 5f;
+            else if (key == GLFW_KEY_LEFT && action == GLFW_RELEASE)
+                model.rotHoriz -= 5f;
+            else if (key == GLFW_KEY_D && action == GLFW_RELEASE)
+                System.out.println("D pressed!");
+        }
+    }
 }

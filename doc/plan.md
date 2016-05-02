@@ -42,8 +42,7 @@ Rubric
 Dr. Rader has asked us to provide a similar rubric to the "classmate
 evaluation" rubric on the assignment page. Here is our proposed rubric:
 
-    (5) Program is functional (despite our team name)
-    (5) Visual appeal of the program - 3D display functionality
-    (20) Our Challenge - cube can be solved
-    (10) Random "set of problems" - equivalent to shuffling provides random
-         cube
+    (10) Program is functional and does not break
+    (15) 3D Display
+    (10) Cube Scramble (randomly generates cube configuration)
+    (5) Cube is solved when program stops rotating the cube
