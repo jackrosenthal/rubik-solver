@@ -408,7 +408,7 @@ public class Cube {
      * GLFW must be iniitialized first! See main/java/Model.java
      */
     public void drawCube() {
-        for (Map.Entry<Position, Cubelet> entry : cubes.entrySet()) {
+        for (Map.Entry<Position, Cubelet> entry: cubes.entrySet()) {
             entry.getValue().drawCubelet(entry.getKey());
         }
     }

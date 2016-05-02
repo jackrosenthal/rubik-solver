@@ -105,11 +105,11 @@ public class Model {
 
             lasttime = time;
             time = (float) glfwGetTime();
-            glRotatef(time * 8f, 0f, 1f, 0f);
+            glRotatef(time * 40f, 0f, 1f, 0f);
             glRotatef(45f, 1f, 0f, 0f);
 
             //steps.get(i).drawCube();
-            if (d.peekFirst() != null && (int)time != (int)lasttime) c = d.pollFirst();
+            if (d.peekFirst() != null && (int)(time/2) != (int)(lasttime/2)) c = d.pollFirst();
             c.drawCube();
 
             glfwSwapBuffers(window);

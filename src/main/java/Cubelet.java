@@ -97,7 +97,7 @@ public class Cubelet {
         glScalef(glScale, glScale, glScale);
 
         glBegin(GL_QUADS);
-        for (Map.Entry<Position, float[][]> entry : faceMap.entrySet()) {
+        for (Map.Entry<Position, float[][]> entry: faceMap.entrySet()) {
             if (entry.getKey().equals(orientation(1, coord)))
                 glColor3f(color1.r, color1.g, color1.b);
             else if (color2 != null && entry.getKey().equals(orientation(2, coord)))
@@ -114,6 +114,9 @@ public class Cubelet {
                     faceMap.get(entry.getKey())[i][2]
                 );
             }
+
+            if (coord.equals(new Position(-1,-1,-1)))
+                System.out.println(this);
         }
         glEnd();
 
