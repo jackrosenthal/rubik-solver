@@ -7,12 +7,12 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Scrambler {
-    public static final String[] moves = {"F", "F'", "2F",
-                                          "B", "B'", "2B",
-                                          "R", "R'", "2R",
-                                          "L", "L'", "2L",
-                                          "U", "U'", "2U",
-                                          "D", "D'", "2D"};
+    public static final String[] moves = {"F", "F'", "F2",
+                                          "B", "B'", "B2",
+                                          "R", "R'", "R2",
+                                          "L", "L'", "L2",
+                                          "U", "U'", "U2",
+                                          "D", "D'", "D2"};
     public static Random rng = new Random();
 
     public static Deque<Cube> scramble(Cube c) {
