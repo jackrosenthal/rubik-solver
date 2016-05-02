@@ -1,5 +1,6 @@
 
 import java.util.List;
+import java.util.Deque;
 
 import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
@@ -79,7 +80,10 @@ public class Model {
     }
 
     public void mainLoop() {
-
+        Cube cube = new Cube();
+        Deque<Cube> d = Scrambler.scramble(cube);
+        Cube c = d.pollFirst();
+        float time = (float)glfwGetTime(), lasttime;
         for(int i = 0; glfwWindowShouldClose(window) != GLFW_TRUE; i++) {
             // These buffers are Java's solution to pass by reference for
             // primitve types. The C version of GLFW takes pointers for this
@@ -99,12 +103,14 @@ public class Model {
             glFrustum(-.02f, .02f, -.02f, .02f, .1f, 1000f);
             glTranslatef(0f, 0f, -5f);
 
-            float time = (float) glfwGetTime();
+            lasttime = time;
+            time = (float) glfwGetTime();
             glRotatef(time * 8f, 0f, 1f, 0f);
             glRotatef(45f, 1f, 0f, 0f);
 
             //steps.get(i).drawCube();
-            new Cube().drawCube();
+            if (d.peekFirst() != null && (int)time != (int)lasttime) c = d.pollFirst();
+            c.drawCube();
 
             glfwSwapBuffers(window);
             glfwPollEvents();
