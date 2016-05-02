@@ -80,173 +80,128 @@ public class Cube {
         else {
             rotation = rotation.charAt(0) + "c";
         }
-        if (refFace ==  Color.RED) {
+        if (refFace ==  Color.RED)
             newRot = redRefFace(rotation.charAt(0), rotation);
-        }
-        else if (refFace ==  Color.GREEN) {
+        else if (refFace ==  Color.GREEN)
             newRot = greenRefFace(rotation.charAt(0), rotation);
-        }
-        else if (refFace ==  Color.BLUE) {
+        else if (refFace ==  Color.BLUE)
             newRot = blueRefFace(rotation.charAt(0), rotation);
-        }
-        else if (refFace ==  Color.YELLOW) {
+        else if (refFace ==  Color.YELLOW)
             newRot = yellowRefFace(rotation.charAt(0), rotation);
-        }
-        else if (refFace ==  Color.ORANGE) {
+        else if (refFace ==  Color.ORANGE)
             newRot = orangeRefFace(rotation.charAt(0), rotation);
-        }
-        else {
+        else
             newRot = rotation;
-        }
         rotate(newRot.charAt(0), newRot.substring(1));
     }
 
     private String redRefFace(char rotFace, String direct) {
             if (rotFace == 'U') {
-                if(direct == "c") { 
+                if(direct == "c")
                     return'B'+"cc";
-                }
-                else if(direct == "cc") {
+                else if(direct == "cc")
                     return 'B'+"c";
-                }
-                else {
+                else
                     return 'B'+"2";
-                }
             }
             else if (rotFace == 'D') {
-                if(direct == "c") { 
+                if(direct == "c")
                     return'F'+"cc";
-                }
-                else if(direct == "cc") {
+                else if(direct == "cc")
                     return 'F'+"c";
-                }
-                else {
+                else
                     return 'F'+"2";
-                }
             }
-            else if (rotFace == 'F') {
+            else if (rotFace == 'F')
                return 'U'+ direct;
-            }
-            else if (rotFace == 'B') {
+            else if (rotFace == 'B')
                 return 'D'+ direct;
-             }
-            else {
+            else
                return rotFace + direct;
-            }
         }
     
     private String greenRefFace(char rotFace, String direct) {
         if (rotFace == 'F') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'R'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'R'+"c";
-            }
-            else {
+            else
                 return 'R'+"2";
-            }
         }
         else if (rotFace == 'B') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'L'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'L'+"c";
-            }
-            else {
+            else
                 return 'L'+"2";
-            }
         }
-        else if (rotFace == 'L') {
+        else if (rotFace == 'L')
            return 'F'+ direct;
-        }
-        else if (rotFace == 'R') {
+        else if (rotFace == 'R')
             return 'B'+ direct;
-         }
-        else {
+        else
            return rotFace + direct;
-        }
     }
     
     private String blueRefFace(char rotFace, String direct) {
         if (rotFace == 'L') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'B'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'B'+"c";
-            }
-            else {
+            else
                 return 'B'+"2";
-            }
         }
         else if (rotFace == 'R') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'F'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'F'+"c";
-            }
-            else {
+            else
                 return 'F'+"2";
-            }
         }
-        else if (rotFace == 'F') {
+        else if (rotFace == 'F')
            return 'L'+ direct;
-        }
-        else if (rotFace == 'B') {
+        else if (rotFace == 'B')
             return 'R'+ direct;
-         }
-        else {
+        else
            return rotFace + direct;
-        }
     }
     
     private String yellowRefFace(char rotFace, String direct) {
         if (rotFace == 'F') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'B'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'B'+"c";
-            }
-            else {
+            else
                 return 'B'+"2";
-            }
         }
         else if (rotFace == 'B') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'F'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'F'+"c";
-            }
-            else {
+            else
                 return 'F'+"2";
-            }
         }
         else if (rotFace == 'L') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'R'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'R'+"c";
-            }
-            else {
+            else
                 return 'R'+"2";
-            }
         }
         else if (rotFace == 'R') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'L'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'L'+"c";
-            }
-            else {
+            else
                 return 'L'+"2";
-            }
         }
         else {
            return rotFace + direct;
@@ -255,39 +210,29 @@ public class Cube {
  
     private String orangeRefFace(char rotFace, String direct) {
         if (rotFace == 'F') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'D'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'D'+"c";
-            }
-            else {
+            else
                 return 'D'+"2";
-            }
         }
         else if (rotFace == 'B') {
-            if(direct == "c") { 
+            if(direct == "c")
                 return'U'+"cc";
-            }
-            else if(direct == "cc") {
+            else if(direct == "cc")
                 return 'U'+"c";
-            }
-            else {
+            else
                 return 'U'+"2";
-            }
         }
-        else if (rotFace == 'U') {
+        else if (rotFace == 'U')
            return 'F'+ direct;
-        }
-        else if (rotFace == 'D') {
+        else if (rotFace == 'D')
             return 'B'+ direct;
-         }
-        else {
+        else
            return rotFace + direct;
-        }
-        
     }
-    
+
     public void rotate(char planeRot, String dir) {
         switch (planeRot) {
         case 'U':
@@ -312,9 +257,8 @@ public class Cube {
     }
 
     private void rotate(Position planeRot, String dir) {
-        if (dir == "cc") {
+        if (dir == "cc")
             rotate(planeRot);
-        }
         else if (dir == "c") {
             rotate(planeRot);
             rotate(planeRot);
@@ -334,9 +278,8 @@ public class Cube {
                     Position newPosition = matxMultZ(position(i,j,planeRot.z));
                     Cubelet mCubelet = cubes.get(position(i,j,planeRot.z));
                     mCubelet.orientation1 = matxMultZ(mCubelet.orientation1);
-                    if (mCubelet.orientation2 != null) {
+                    if (mCubelet.orientation2 != null)
                         mCubelet.orientation2 = matxMultZ(mCubelet.orientation2);
-                    }
                     newCubes.put(newPosition, mCubelet);
                 }
             }
@@ -347,9 +290,8 @@ public class Cube {
                     Position newPosition = matxMultY(position(i,planeRot.y,j));
                     Cubelet mCubelet = cubes.get(position(i,planeRot.y,j));
                     mCubelet.orientation1 = matxMultY(mCubelet.orientation1);
-                    if (mCubelet.orientation2 != null) {
+                    if (mCubelet.orientation2 != null)
                         mCubelet.orientation2 = matxMultY(mCubelet.orientation2);
-                    }
                     newCubes.put(newPosition, mCubelet);
                 }
             }
@@ -360,9 +302,8 @@ public class Cube {
                     Position newPosition = matxMultX(position(planeRot.x,i,j));
                     Cubelet mCubelet = cubes.get(position(planeRot.x,i,j));
                     mCubelet.orientation1 = matxMultX(mCubelet.orientation1);
-                    if (mCubelet.orientation2 != null) {
+                    if (mCubelet.orientation2 != null)
                         mCubelet.orientation2 = matxMultX(mCubelet.orientation2);
-                    }
                     newCubes.put(newPosition, mCubelet);
                 }
             }
