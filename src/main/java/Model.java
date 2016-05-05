@@ -96,7 +96,7 @@ public class Model {
             glMatrixMode(GL_PROJECTION);
             glLoadIdentity();
             glFrustum(-.02f, .02f, -.02f, .02f, .1f, 1000f);
-            glTranslatef(0f, 0f, -5f);
+            glTranslatef(0f, 0f, -6f);
 
             lasttime = time;
             time = (float) glfwGetTime();
@@ -113,6 +113,8 @@ public class Model {
             glfwPollEvents();
             width.flip();
             height.flip();
+
+            sync(60);
         }
     }
 
@@ -141,6 +143,49 @@ public class Model {
             }
             else if (key == GLFW_KEY_D && action == GLFW_RELEASE) {
                 if (model.cubeIndex > 0) model.cubeIndex--;
+            }
+        }
+    }
+
+    /* Source: http://forum.lwjgl.org/index.php?topic=5653.0
+     * Causes thread to sleep so fps is capped at a certain value
+     */
+    private long variableYieldTime, lastTime;
+    private void sync(int fps) {
+        if (fps <= 0) return;
+
+        long sleepTime = 1000000000 / fps; // nanoseconds to sleep this frame
+        // yieldTime + remainder micro & nano seconds if smaller than sleepTime
+        long yieldTime = Math.min(sleepTime, variableYieldTime + sleepTime % (1000*1000));
+        long overSleep = 0; // time the sync goes over by
+
+        try {
+            while (true) {
+                long t = System.nanoTime() - lastTime;
+
+                if (t < sleepTime - yieldTime) {
+                    Thread.sleep(1);
+                } else if (t < sleepTime) {
+                    // burn the last few CPU cycles to ensure accuracy
+                    Thread.yield();
+                } else {
+                    overSleep = t - sleepTime;
+                    break; // exit while loop
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lastTime = System.nanoTime() - Math.min(overSleep, sleepTime);
+
+            // auto tune the time sync should yield
+            if (overSleep > variableYieldTime) {
+                // increase by 200 microseconds (1/5 a ms)
+                variableYieldTime = Math.min(variableYieldTime + 200*1000, sleepTime);
+            }
+            else if (overSleep < variableYieldTime - 200*1000) {
+                // decrease by 2 microseconds
+                variableYieldTime = Math.max(variableYieldTime - 2*1000, 0);
             }
         }
     }
