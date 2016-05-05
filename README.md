@@ -5,6 +5,14 @@
 * To test, type `gradle test`
 * To view other options, type `gradle tasks`
 
+## Controls
+
+Controls are bound to the equivalent QWERTY hardware keys.
+
+* Arrow keys to rotate the cube
+* `D` to step forwards in the solver
+* `A` to step backwards in the solver
+
 ## Coordinate System
 
 White: Positive Y
